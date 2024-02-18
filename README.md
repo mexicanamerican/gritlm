@@ -123,12 +123,12 @@ Shortcuts:
 
 The most important ones are:
 
-| Model | Description | Emb performance (MTEB) | Gen performance |
-|:------|:-----------:|:----------------------:| :--------------:|
-| [GritLM-7B](https://huggingface.co/GritLM/gritlm-7b) | 7B parameter model that uses bidirectional attention for embedding and causal attention for generation. It is finetuned from Mistral-7B | 66.8 | 55.5 |
-| [GritLM-8x7B](https://huggingface.co/GritLM/gritlm-8x7b) | 7B parameter model that uses bidirectional attention for embedding and causal attention for generation. It is finetuned from Mistral-8x7B | 65.7 | 65.7 |
-| [Generative-only variant](https://hf.co/GritLM/gen_m7_sq2048_tulu2_ep1) | 7B parameter model generative-only equivalent of GritLM-7B. | 41.2 | 55.2 |
-| [Embedding-only variant](https://hf.co/GritLM/emb_m7_nodes16_fast) | 7B parameter model embedding-only equivalent of GritLM-7B. | 66.8 | 7.6 |
+| Model |                                                                 Description                                                                 | Emb performance (MTEB) | Gen performance |
+|:------|:-------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------:| :--------------:|
+| [GritLM-7B](https://huggingface.co/GritLM/gritlm-7b) |   7B parameter model that uses bidirectional attention for embedding and causal attention for generation. It is finetuned from Mistral-7B   | 66.8 | 55.5 |
+| [GritLM-8x7B](https://huggingface.co/GritLM/gritlm-8x7b) | 8x7B parameter model that uses bidirectional attention for embedding and causal attention for generation. It is finetuned from Mistral-8x7B | 65.7 | 65.7 |
+| [Generative-only variant](https://hf.co/GritLM/gen_m7_sq2048_tulu2_ep1) |                                         7B parameter model generative-only equivalent of GritLM-7B.                                         | 41.2 | 55.2 |
+| [Embedding-only variant](https://hf.co/GritLM/emb_m7_nodes16_fast) |                                         7B parameter model embedding-only equivalent of GritLM-7B.                                          | 66.8 | 7.6 |
 
 For `GritLM-7B` and `GritLM-8x7B`, the folder contains a custom modeling file (`modeling_gritlm*.py`) which adds bidirectional attention via the keyword argument `is_causal`, such that if you load them with `from_pretrained` in transformers, it is automatically available. We did not add this for any other models uploaded to the organization, thus for those, you need to either add it yourself or simply replace the `modeling_mistral.py` & `modeling_mixtral.py` files in your transformers installation with `scripts/modeling_mistral_gritlm.py` & `scripts/modeling_mixtral_gritlm.py`. Note that for models that do not use bidirectional attention or when you do not intend to use the bidirectional attention (e.g. for generation), you don't need to do anything.
 
@@ -423,11 +423,11 @@ Number of tensors saved during recomputation: 45
 
 ### Visuals
 
-- Figure 1: https://colab.research.google.com/drive/13MY11ZRtkDjBMWYEXoaDF1nxyRxis7o7?usp=sharing & then add in logos via `visuals/performance.drawio` that can be opened with https://app.diagrams.net/, then add blurbs in via `visuals/performance.key` that can be opened in Keynote.
-- Figure 2: https://docs.google.com/drawings/d/1ZAzaX4h2JfJR1ahan0R5nk3Xm17SMquGjhshnBNJOzY/edit?usp=sharing
-- Figure 3: https://docs.google.com/drawings/d/1vaSNvDWy6xBBuC70rI22qdOmymksxqoTYiplGPH22ys/edit?usp=sharing
-- Figure 4: https://docs.google.com/drawings/d/1rv916zpYvBbaS6QxpFP4_6fc4gABcPWc2qZC3NUpz8s/edit?usp=sharing
-- Figure 5/6/7/8: https://colab.research.google.com/drive/13MY11ZRtkDjBMWYEXoaDF1nxyRxis7o7?usp=sharing
+- Figure 1: `visuals/performance.pdf`; `visuals/grit_plots.ipynb` / [colab](https://colab.research.google.com/drive/13MY11ZRtkDjBMWYEXoaDF1nxyRxis7o7?usp=sharing) & then add in logos via `visuals/performance.drawio` that can be opened with https://app.diagrams.net/, then add blurbs in via `visuals/performance.key` that can be opened in Keynote.
+- Figure 2: `visuals/octopus.pdf` ; https://docs.google.com/drawings/d/1ZAzaX4h2JfJR1ahan0R5nk3Xm17SMquGjhshnBNJOzY/edit?usp=sharing
+- Figure 3: `visuals/format.pdf` ; https://docs.google.com/drawings/d/1vaSNvDWy6xBBuC70rI22qdOmymksxqoTYiplGPH22ys/edit?usp=sharing
+- Figure 4: `visuals/rag.pdf` ; https://docs.google.com/drawings/d/1rv916zpYvBbaS6QxpFP4_6fc4gABcPWc2qZC3NUpz8s/edit?usp=sharing
+- Figure 5/6/7/8: `visuals/latency.pdf`/`visuals/loss7.pdf`/`visuals/loss8x7.pdf`/`visuals/embmem.pdf` ; `visuals/grit_plots.ipynb` / [colab](https://colab.research.google.com/drive/13MY11ZRtkDjBMWYEXoaDF1nxyRxis7o7?usp=sharing)
 - Other figures & tables are manual, but there are helper scripts, such as `scripts/mteb_to_tex.py`
 
 ### Acknowledgements
